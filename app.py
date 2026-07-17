@@ -2,6 +2,7 @@ import streamlit as st
 from questions import questions, prizes
 from PIL import Image
 import base64
+import time
 
 # -------------------- PAGE CONFIG -----------------------
 
@@ -95,6 +96,16 @@ footer {{
     unsafe_allow_html=True,
 )
 
+# ---------------- Timer Functions ----------------
+
+QUESTION_TIME = 30
+
+def get_time_remaining():
+    elapsed = int(time.time() - st.session_state.question_start_time)
+    remaining = QUESTION_TIME - elapsed
+    return max(0, remaining)
+
+
 # ---------------- Session State ----------------
 
 if "question_no" not in st.session_state:
@@ -106,9 +117,50 @@ if "money" not in st.session_state:
 if "game_over" not in st.session_state:
     st.session_state.game_over = False
 
+# ---------- Timer ----------
+
+QUESTION_TIME = 30
+
+if "question_start_time" not in st.session_state:
+    st.session_state.question_start_time = time.time()
+
+if "last_question" not in st.session_state:
+    st.session_state.last_question = 0
+
+# Reset timer whenever a new question appears
+if st.session_state.last_question != st.session_state.question_no:
+    st.session_state.question_start_time = time.time()
+    st.session_state.last_question = st.session_state.question_no
+
 # ---------------- Sidebar ----------------------
 
 st.sidebar.title("💰 Prize Ladder")
+
+# ---------------- Timer ----------------
+
+remaining = get_time_remaining()
+
+progress_value = remaining / QUESTION_TIME
+
+if remaining > 20:
+    timer_color = "#00ff66"      # Green
+elif remaining > 10:
+    timer_color = "#ffb000"      # Orange
+else:
+    timer_color = "#ff2b2b"      # Red
+
+st.markdown(
+    f"""
+    <h2 style='text-align:center;
+               color:{timer_color};
+               margin-bottom:5px;'>
+        ⏰ {remaining} Seconds Remaining
+    </h2>
+    """,
+    unsafe_allow_html=True,
+)
+
+st.progress(progress_value)
 
 for i in reversed(range(len(prizes))):
     if i == st.session_state.question_no:
@@ -183,6 +235,20 @@ if st.session_state.question_no == len(questions):
 
     st.stop()
 
+
+# ---------------- Time's Up ----------------
+
+if remaining <= 0:
+
+    st.session_state.game_over = True
+
+    st.error("⏰ Time's Up!")
+
+    st.info(
+        f"The correct answer was: {questions[st.session_state.question_no][questions[st.session_state.question_no][5]]}"
+    )
+
+    st.stop()
 # ---------------- Current Question -------------
 
 q = questions[st.session_state.question_no]
@@ -244,3 +310,14 @@ if st.button("Submit Answer", use_container_width=True):
             st.session_state.game_over = True
 
             st.rerun()
+
+# ---------------- Auto Refresh ----------------
+
+if (
+    not st.session_state.game_over
+    and st.session_state.question_no < len(questions)
+):
+    time.sleep(1)
+    st.rerun()
+
+    
