@@ -1,61 +1,73 @@
 # 🎮 Who Wants To Be A Millionaire
 
 <p align="center">
-  <img src="assets/logo.png" alt="Millionaire Game Logo" width="180">
+  <img src="assets/logo.png" alt="Who Wants To Be A Millionaire Logo" width="180">
 </p>
 
 <p align="center">
-  <b>A modern Who Wants To Be A Millionaire quiz game built with Python and Streamlit.</b>
+  <strong>A modern recreation of the classic <em>Who Wants To Be A Millionaire</em> game built with Python and Streamlit.</strong>
 </p>
 
 <p align="center">
 
-![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![Streamlit](https://img.shields.io/badge/Streamlit-Framework-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)
-![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
+![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge\&logo=python\&logoColor=white)
+![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge\&logo=streamlit\&logoColor=white)
 ![Status](https://img.shields.io/badge/Status-Completed-success?style=for-the-badge)
+![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
 </p>
 
 ---
 
-# 📸 Preview
+## 🌐 Live Demo
+
+🚀 **Play the game online**
+
+**https://YOUR_STREAMLIT_URL.streamlit.app**
+
+---
+
+## 📸 Preview
 
 <p align="center">
-<img src="assets/preview.png" width="900">
+  <img src="assets/preview.png" alt="Game Preview" width="900">
 </p>
 
 ---
 
-# ✨ Features
+## ✨ Features
 
-- 🎯 Classic **Who Wants To Be A Millionaire** gameplay
-- 💰 Interactive prize ladder
-- 📈 Live winnings tracker
-- 📊 Progress bar for game completion
-- ❓ Multiple choice questions
-- ✅ Instant answer validation
-- ❌ Game Over screen for incorrect answers
-- 🏆 Winner celebration with balloons
-- 🔄 Play Again functionality
-- 🖼️ Custom logo
-- 🌌 Full-screen background image
-- 🎨 Modern UI using custom HTML & CSS
-- ⚡ Built entirely with Streamlit
-
----
-
-# 🛠️ Built With
-
-- Python
-- Streamlit
-- Pillow (PIL)
+* 🎯 Classic *Who Wants To Be A Millionaire* gameplay
+* 💰 Interactive prize ladder
+* 📈 Live winnings tracker
+* 📊 Question progress indicator
+* ⏱️ 30-second countdown timer for every question
+* 🟢🟠🔴 Dynamic timer color changes (Green → Orange → Red)
+* 📉 Shrinking timer progress bar
+* ⏰ Automatic **Time's Up** detection
+* ✅ Instant answer validation
+* ❌ Game Over screen
+* 🏆 Winner celebration with balloons
+* 🔄 Play Again functionality
+* 🖼️ Custom logo
+* 🌌 Full-screen background image
+* 🎨 Modern UI using HTML & CSS
+* ⚡ Built entirely with Streamlit
 
 ---
 
-# 📂 Project Structure
+## 🛠️ Technologies Used
 
-```
+* Python
+* Streamlit
+* Pillow (PIL)
+* HTML & CSS (within Streamlit)
+
+---
+
+## 📂 Project Structure
+
+```text
 Millionaire-Game/
 │
 ├── assets/
@@ -72,33 +84,27 @@ Millionaire-Game/
 
 ---
 
-# 🚀 Installation
+## 🚀 Installation
 
-## 1️⃣ Clone the Repository
+### Clone the repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/Millionaire-Game.git
+git clone https://github.com/A6dur/Millionaire-Game.git
 ```
 
----
-
-## 2️⃣ Move into the Project Folder
+### Navigate to the project folder
 
 ```bash
 cd Millionaire-Game
 ```
 
----
-
-## 3️⃣ Install Dependencies
+### Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
----
-
-## 4️⃣ Run the Application
+### Run the application
 
 ```bash
 streamlit run app.py
@@ -106,26 +112,27 @@ streamlit run app.py
 
 ---
 
-# 🎮 How to Play
+## 🎮 How to Play
 
 1. Launch the application.
 2. Read the question carefully.
-3. Select one of the four options.
+3. Select the correct answer.
 4. Click **Submit Answer**.
-5. Every correct answer increases your prize money.
-6. A wrong answer ends the game.
-7. Reach the final question to become the Millionaire!
+5. Answer before the timer reaches zero.
+6. Each correct answer increases your winnings.
+7. A wrong answer—or running out of time—ends the game.
+8. Reach the final question to become the Millionaire!
 
 ---
 
-# 📦 Requirements
+## 📦 Requirements
 
-```
+```text
 streamlit
 Pillow
 ```
 
-or simply
+Install them using:
 
 ```bash
 pip install -r requirements.txt
@@ -133,58 +140,43 @@ pip install -r requirements.txt
 
 ---
 
-# 💡 Future Improvements
+## 🚀 Future Improvements
 
-- ⏳ Countdown timer
-- 💡 Lifelines (50:50, Ask the Audience, Phone a Friend)
-- 🔊 Sound effects
-- 🎵 Background music
-- 🌍 Online leaderboard
-- 💾 Save high scores
-- 🎬 Animations between questions
-- 🎨 Dark & Light themes
+* 💡 50:50 Lifeline
+* 👥 Ask the Audience
+* ☎️ Phone a Friend
+* 🔊 Sound effects
+* 🎵 Background music
+* 🏅 High score leaderboard
+* 💾 Save game progress
+* 🎬 Enhanced animations
+* 📱 Improved mobile responsiveness
 
 ---
 
-# 🤝 Contributing
+## 🤝 Contributing
 
 Contributions are welcome!
 
-1. Fork this repository
-2. Create a new branch
-
-```bash
-git checkout -b feature-name
-```
-
-3. Commit your changes
-
-```bash
-git commit -m "Added new feature"
-```
-
-4. Push your branch
-
-```bash
-git push origin feature-name
-```
-
-5. Open a Pull Request
+1. Fork the repository.
+2. Create a feature branch.
+3. Commit your changes.
+4. Push your branch.
+5. Open a Pull Request.
 
 ---
 
-# ⭐ Support
+## ⭐ Support
 
-If you enjoyed this project, don't forget to give it a ⭐ on GitHub!
+If you enjoyed this project, please consider giving it a **⭐ Star** on GitHub.
 
 ---
 
-# 👨‍💻 Author
+## 👨‍💻 Author
 
 **Abdur Rafay**
 
-GitHub:
-https://github.com/A6dur
+GitHub: https://github.com/A6dur
 
 ---
 
