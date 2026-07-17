@@ -23,7 +23,7 @@
 
 🚀 **Play the game online**
 
-**https://YOUR_STREAMLIT_URL.streamlit.app**
+**https://mdaw82kcuf7xf2xbtsmzk9.streamlit.app**
 
 ---
 
