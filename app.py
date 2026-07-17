@@ -188,16 +188,49 @@ with col2:
 progress = st.progress(
     st.session_state.question_no / len(questions)
 )
+left, right = st.columns([2, 1])
 
-st.markdown(
+with left:
+
+    st.markdown(
     f"""
-<div class="prize-box">
-Current Winnings
-<h2>Rs {st.session_state.money:,}</h2>
-</div>
-""",
-    unsafe_allow_html=True,
-)
+    <div class="prize-box">
+    Current Winnings
+    <h2>Rs {st.session_state.money:,}</h2>
+    </div>
+    """,
+    unsafe_allow_html=True
+    )
+
+with right:
+
+    remaining = get_time_remaining()
+
+    if remaining > 20:
+        color = "#00ff66"
+    elif remaining > 10:
+        color = "#ffb000"
+    else:
+        color = "#ff2b2b"
+
+    st.markdown(
+        f"""
+        <div style="
+            background:#101937;
+            border-radius:15px;
+            border:2px solid gold;
+            padding:18px;
+            text-align:center;
+        ">
+        <h3 style="color:{color};">
+        ⏰ {remaining}s
+        </h3>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    st.progress(remaining / QUESTION_TIME)
 
 # ---------------- Game Finished ----------------
 
@@ -212,9 +245,14 @@ if st.session_state.game_over:
         st.session_state.question_no = 0
         st.session_state.money = 0
         st.session_state.game_over = False
-        st.rerun()
 
-    st.stop()
+        st.session_state.question_start_time = time.time()
+        st.session_state.last_question = 0
+
+        if "answer" in st.session_state:
+            del st.session_state["answer"]
+
+        st.rerun()
 
 # ---------------- Winner -----------------------
 
@@ -231,9 +269,14 @@ if st.session_state.question_no == len(questions):
         st.session_state.question_no = 0
         st.session_state.money = 0
         st.session_state.game_over = False
-        st.rerun()
 
-    st.stop()
+        st.session_state.question_start_time = time.time()
+        st.session_state.last_question = 0
+
+        if "answer" in st.session_state:
+            del st.session_state["answer"]
+
+        st.rerun()
 
 
 # ---------------- Time's Up ----------------
@@ -274,9 +317,10 @@ answer = st.radio(
         q[1],
         q[2],
         q[3],
-        q[4],
+        q[4]
     ],
     index=None,
+    key="answer"
 )
 
 if st.button("Submit Answer", use_container_width=True):
@@ -293,9 +337,20 @@ if st.button("Submit Answer", use_container_width=True):
 
             st.success("✅ Correct Answer!")
 
+            time.sleep(0.8)
+
             st.session_state.money = prizes[st.session_state.question_no]
 
+            # Move to next question
             st.session_state.question_no += 1
+
+            # Reset timer immediately
+            st.session_state.question_start_time = time.time()
+            st.session_state.last_question = st.session_state.question_no
+
+            # Clear previous radio selection
+            if "answer" in st.session_state:
+                del st.session_state["answer"]
 
             st.rerun()
 
@@ -320,4 +375,3 @@ if (
     time.sleep(1)
     st.rerun()
 
-    
